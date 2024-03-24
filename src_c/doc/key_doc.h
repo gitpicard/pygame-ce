@@ -10,6 +10,8 @@
 #define DOC_KEY_GETREPEAT "get_repeat() -> (delay, interval)\nsee how held keys are repeated"
 #define DOC_KEY_NAME "name(key, use_compat=True) -> str\nget the name of a key identifier"
 #define DOC_KEY_KEYCODE "key_code(name=string) -> int\nget the key identifier from a key name"
+#define DOC_KEY_TO_SCAN "key_to_scan(int) -> int\nget the key code from a scan code"
+#define DOC_SCAN_TO_KEY "scan_to_key(int) -> int\nget the scan code from a key code"
 #define DOC_KEY_STARTTEXTINPUT "start_text_input() -> None\nstart handling Unicode text input events"
 #define DOC_KEY_STOPTEXTINPUT "stop_text_input() -> None\nstop handling Unicode text input events"
 #define DOC_KEY_SETTEXTINPUTRECT "set_text_input_rect(rect, /) -> None\ncontrols the position of the candidate list"

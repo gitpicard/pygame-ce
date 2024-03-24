@@ -479,6 +479,40 @@ key_code(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 static PyObject *
+scan_to_key(PyObject *self, PyObject *args)
+{
+    int scancode;
+    SDL_Keycode keycode;
+
+    if (!PyArg_ParseTuple(args, "i", &scancode))
+        return NULL;
+
+    keycode = SDL_GetKeyFromScancode(scancode);
+    if (keycode == SDLK_UNKNOWN) {
+        return RAISE(PyExc_ValueError, "unknown scancode");
+    }
+
+    return PyLong_FromLong(keycode);
+}
+
+static PyObject *
+key_to_scan(PyObject *self, PyObject *args)
+{
+    int keycode;
+    SDL_Scancode scancode;
+
+    if (!PyArg_ParseTuple(args, "i", &keycode))
+        return NULL;
+
+    keycode = SDL_GetScancodeFromKey(keycode);
+    if (keycode == SDLK_UNKNOWN) {
+        return RAISE(PyExc_ValueError, "unknown scancode");
+    }
+
+    return PyLong_FromLong(keycode);
+}
+
+static PyObject *
 key_get_mods(PyObject *self, PyObject *_null)
 {
     VIDEO_INIT_CHECK();
@@ -569,6 +603,9 @@ static PyMethodDef _key_methods[] = {
      DOC_KEY_NAME},
     {"key_code", (PyCFunction)key_code, METH_VARARGS | METH_KEYWORDS,
      DOC_KEY_KEYCODE},
+     {"scan_to_key", scan_to_key, METH_VARARGS, DOC_SCAN_TO_KEY},
+     {"key_to_scan", key_to_scan, METH_VARARGS, DOC_KEY_TO_SCAN},
+     {"get_pressed", key_get_pressed, METH_NOARGS, DOC_KEY_GETPRESSED},
     {"get_mods", key_get_mods, METH_NOARGS, DOC_KEY_GETMODS},
     {"set_mods", key_set_mods, METH_VARARGS, DOC_KEY_SETMODS},
     {"get_focused", key_get_focused, METH_NOARGS, DOC_KEY_GETFOCUSED},
