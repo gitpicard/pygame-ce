@@ -4818,7 +4818,7 @@ static int __pyx_pf_6pygame_4pypm_5Input___init__(struct __pyx_obj_6pygame_4pypm
  *         if err < 0:
  *             raise Exception(Pm_GetErrorText(err))
  */
-  __pyx_v_err = Pm_OpenInput((&__pyx_v_self->midi), __pyx_t_2, NULL, __pyx_t_3, (&Pt_Time), NULL);
+  __pyx_v_err = Pm_OpenInput((&__pyx_v_self->midi), __pyx_t_2, NULL, __pyx_t_3, (PmTimeProcPtr)(&Pt_Time), NULL);
 
   /* "pygame/pypm.pyx":546
  *         err = Pm_OpenInput(&(self.midi), input_device, NULL, buffersize,
