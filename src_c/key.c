@@ -504,12 +504,12 @@ key_to_scan(PyObject *self, PyObject *args)
     if (!PyArg_ParseTuple(args, "i", &keycode))
         return NULL;
 
-    keycode = SDL_GetScancodeFromKey(keycode);
-    if (keycode == SDLK_UNKNOWN) {
+    scancode = SDL_GetScancodeFromKey(keycode);
+    if (scancode == SDLK_UNKNOWN) {
         return RAISE(PyExc_ValueError, "unknown scancode");
     }
 
-    return PyLong_FromLong(keycode);
+    return PyLong_FromLong(scancode);
 }
 
 static PyObject *
@@ -603,8 +603,8 @@ static PyMethodDef _key_methods[] = {
      DOC_KEY_NAME},
     {"key_code", (PyCFunction)key_code, METH_VARARGS | METH_KEYWORDS,
      DOC_KEY_KEYCODE},
-     {"scan_to_key", scan_to_key, METH_VARARGS, DOC_SCAN_TO_KEY},
-     {"key_to_scan", key_to_scan, METH_VARARGS, DOC_KEY_TO_SCAN},
+     {"scan_to_key", scan_to_key, METH_VARARGS, "scan_to_key(int) -> int\nget the scan code from a key code"},
+     {"key_to_scan", key_to_scan, METH_VARARGS, "key_to_scan(int) -> int\nget the key code from a scan code"},
      {"get_pressed", key_get_pressed, METH_NOARGS, DOC_KEY_GETPRESSED},
     {"get_mods", key_get_mods, METH_NOARGS, DOC_KEY_GETMODS},
     {"set_mods", key_set_mods, METH_VARARGS, DOC_KEY_SETMODS},
